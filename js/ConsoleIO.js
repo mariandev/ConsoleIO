@@ -82,7 +82,6 @@ ConsoleIO.prototype.execute = function(cmd) {
 		return;
 	}
 	this.__commands[command_name].exec.call(this, args, (function() {
-		//console.log(this);
 		this.waitForCommand();
 	}).bind(this));
 };
@@ -90,18 +89,12 @@ ConsoleIO.prototype.waitForCommand = function() {
 	this.__commandBox = document.createElement("input");
 	this.__commandBox.id = "ConsoleIO-command-box";
 	this.__commandBox.setAttribute('class', "ConsoleIO-command-box");
-	//this.write("mariandev@console_dashboard: ", {nobreak: true, color: this.__colors.default});
-
-	var wrap = document.createElement("span");
-		wrap.setAttribute('class', "ConsoleIO-cell");
-		wrap.appendChild(this.__commandBox);
 
     this.write("<span class='ConsoleIO-cell ConsoleIO-cell-shrink'>" + this.__consoleName + "&nbsp;</span><span class='ConsoleIO-cell ConsoleIO-cell-stretch .ConsoleIO-command'><input id='ConsoleIO-command-box' class='ConsoleIO-command-box'></span>");
 
-	//this.write(wrap);
 	this.__commandBox = document.getElementById("ConsoleIO-command-box");
 	this.__commandBox.onkeydown = (this.handleinput).bind(this);
-	//this.__commandBox.focus();
+	this.__commandBox.focus();
 	this.__waitingForCommand = true;
 	console.log(this.__commandBox);
 };
