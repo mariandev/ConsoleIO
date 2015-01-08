@@ -81,10 +81,10 @@ ConsoleIO.prototype.execute = function(cmd) {
 		this.waitForCommand();
 		return;
 	}
-	this.__commands[command_name].exec.call(this, args, function() {
-		console.log(this);
+	this.__commands[command_name].exec.call(this, args, (function() {
+		//console.log(this);
 		this.waitForCommand();
-	});
+	}).bind(this));
 };
 ConsoleIO.prototype.waitForCommand = function() {
 	this.__commandBox = document.createElement("input");
@@ -155,11 +155,10 @@ ConsoleIO.prototype.__warn = function(msg) {
 
 var Default_command_clear = new Object({
 	name: 'clear',
-	version: '0.0.1',
-	init: false,
+	version: '1.0',
 	exec: function(args, cb) {
 		this.__display.innerHTML = "";
-		if(typeof cb === 'function') cb.call(this);
+		if(typeof cb === 'function') cb();
 	}
 });
 
@@ -173,6 +172,6 @@ var Default_command_help = new Object({
 		for(var command in this.__commands)
 			this.write("&nbsp;&nbsp;&nbsp;" + command + " (v"+ this.__commands[command].version +")");
 		this.write("");
-		if(typeof cb === 'function') cb.call(this);
+		if(typeof cb === 'function') cb();
 	}
 });
