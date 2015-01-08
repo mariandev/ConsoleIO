@@ -1,0 +1,44 @@
+.ConsoleIO {
+    display: table;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+    width: 100%;
+}
+.ConsoleIO-cell{
+    display: table-cell;
+    vertical-align: middle;
+    width: auto;
+    padding: 0;
+    height: 1em;
+}
+.ConsoleIO-cell-shrink{
+    width: 1%;
+    white-space:nowrap;
+}
+.ConsoleIO-cell-stretch {
+    width: 90%;
+}
+.ConsoleIO-row {
+    display: table-row;
+    width: 100%;
+}
+.ConsoleIO-command {
+    width: auto;
+    height: 1em;
+    border: 0;
+    padding-right: 3px;
+    margin: 0;
+}
+.ConsoleIO-command-box {
+    background: transparent;
+    color: #bada55;
+    border: 0;
+    width: 100%;
+}
+
+.ConsoleIO-command-box:focus {
+    outline: none;
+}
