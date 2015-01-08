@@ -2,11 +2,13 @@ window.ConsoleIO = function(opts){
     
     if(!opts) var opts = {};
 
-    this.__displayId = opts.display_id || 'display';
+    this.__containerId = opts.container || 'ConsoleIO';
     this.__enableWarnings = opts.enable_warnings || false;
     this.__enableRewrites = opts.enable_rewrites || false;
+    this.__enableReverseDisplay = opts.enable_reverse_display || false;
     this.__consoleName = opts.console_name || "ConsoleIO:";
-	this.__commandBox = null;
+	this.__commandBox = false;
+	this.__container = false;
 	this.__display = false;
 	this.__commands = {};
 	this.__waitingForCommand = false;
@@ -28,9 +30,14 @@ window.ConsoleIO = function(opts){
 	
 };
 ConsoleIO.prototype.init = function (cb) {
-	this.__display = document.getElementById(this.__displayId);
+	this.__container = document.getElementById(this.__containerId);
+	this.__container.setAttribute('class', 'ConsoleIO');
+    
+    this.__display = document.createElement("div");
+    this.__display.setAttribute('class', "ConsoleIO-inner" + (this.__enableReverseDisplay?" ConsoleIO-inner-reverse":""));
+    
+    this.__container.appendChild(this.__display);
 
-	this.__display.setAttribute('class', 'ConsoleIO');
 	
 	if(typeof cb === 'function') cb.call(this);
 	
@@ -96,7 +103,6 @@ ConsoleIO.prototype.waitForCommand = function() {
 	this.__commandBox.onkeydown = (this.handleinput).bind(this);
 	this.__commandBox.focus();
 	this.__waitingForCommand = true;
-	console.log(this.__commandBox);
 };
 ConsoleIO.prototype.registerCommand = function(command, cb) {
     
@@ -134,6 +140,9 @@ ConsoleIO.prototype.write = function(msg, args) {
 		msg='<span class="ConsoleIO-row" style="color:'+ (args.color?args.color:this.__colors.default) +';"><span class="ConsoleIO-cell">'+msg+'</span></span>';
 		this.__display.innerHTML += msg;
 	}
+	
+	this.__container.scrollTop = this.__container.scrollHeight;
+	
 };
 ConsoleIO.prototype.__error = function(msg) {
 	this.write('Error: ' + msg, {color: this.__colors.error});
