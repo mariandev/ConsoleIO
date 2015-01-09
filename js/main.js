@@ -23,7 +23,7 @@ var Command_showargs = new Object({
 		
 		next();
 	}
-});
+}); //Example: showargs arg1 arg2 arg3 arg4
 
 var Command_pretty = new Object({
 	name: 'pretty',
@@ -39,7 +39,7 @@ var Command_pretty = new Object({
 		
 		next();
 	}
-});
+}); //Example: pretty This block of thext is fabulous!
 
 var Command_showimage = new Object({
 	name: 'showimage',

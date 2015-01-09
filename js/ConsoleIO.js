@@ -37,6 +37,11 @@ ConsoleIO.prototype.init = function (cb) {
     this.__display.setAttribute('class', "ConsoleIO-inner" + (this.__enableReverseDisplay?" ConsoleIO-inner-reverse":""));
     
     this.__container.appendChild(this.__display);
+    
+    this.__container.addEventListener("click", (function() {
+    	if(this.__commandBox)
+    		this.__commandBox.focus();
+    }).bind(this), false);
 
 	
 	if(typeof cb === 'function') cb.call(this);
@@ -158,22 +163,22 @@ ConsoleIO.prototype.__warn = function(msg) {
 var Default_command_clear = new Object({
 	name: 'clear',
 	version: '1.0',
-	exec: function(args, cb) {
+	exec: function(args, next) {
 		this.__display.innerHTML = "";
-		if(typeof cb === 'function') cb();
+		next();
 	}
 });
 
 var Default_command_help = new Object({
 	name: ['help','?'],
 	version: '1.0',
-	exec: function(args, cb) {
+	exec: function(args, next) {
 		this.write("");
 		this.write('~~~~~~~{HELP}~~~~~~~');
 		this.write("");
 		for(var command in this.__commands)
 			this.write("&nbsp;&nbsp;&nbsp;" + command + " (v"+ this.__commands[command].version +")");
 		this.write("");
-		if(typeof cb === 'function') cb();
+		next();
 	}
 });
