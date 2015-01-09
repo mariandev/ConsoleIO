@@ -55,6 +55,7 @@
  
 ###Tips:
  1. If you want to make a function that can be executed in the console by multiples command (liek *help* and *?* ; they do the same thing but code is only written once) you can make the name of the command to be and an array like so: ["help", "?"]
+  
   > ```javascript
   > var Default_command_help = new Object({
   >    	name: ['help','?'],
@@ -65,7 +66,10 @@
   >  	}
   >  });
   > ```
+
  2. You can register multiple commands by passing an array to the .registerCommand() function.
+  
   > ```javascript
   > Console.registerCommand([Command_function_1,Command_function_2,Command_function_3]);
   > ```
+
