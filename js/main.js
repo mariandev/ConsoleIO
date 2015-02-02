@@ -1,9 +1,9 @@
 var Console;
 window.addEventListener('load', function() {
 	Console = new ConsoleIO({
-	    enable_rewrites: true,
-	    //enable_warnings: true
-	    //console_name: "Custom name:"
+	    enable_rewrites: true
+	    //,enable_warnings: true
+	    //,console_name: "UplinkConsole:"
 	});
 	Console.registerCommand([Command_showargs,Command_showimage]);
 	Console.registerCommand(Command_pretty);
@@ -49,11 +49,11 @@ var Command_showimage = new Object({
 		if(args.length !== 0)
 	    	this.write("<img src="+args[0]+">");
 	    else
-	        this.warn("You have to pass an image url a a parameter");
+	        this.warn("You have to pass an image url as a parameter");
 		
 		next();
 	}
-}); // Example: showimage //http://lorempixel.com/output/abstract-q-g-640-480-3.jpg
+}); // Example: showimage http://lorempixel.com/output/abstract-q-g-640-480-3.jpg
 
 var Command_help = new Object({
 	name: ['help','?'],

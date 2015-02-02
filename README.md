@@ -20,7 +20,7 @@
 #####Right now the console it's up and running but it doesn't know to do anything.
  > ```javascript
  > var Command_hello = new Object({
- > 	name: "hello",
+ > 	name: 'hello',
  > 	version: '1.0',
  > 	exec: function(args, next) {
  > 		this.write("Hello stranger, nice to meet you.");
@@ -54,7 +54,7 @@
  > After adding this last line of code the command is ready to be executed.
  
 ###Tips:
- 1. If you want to make a function that can be executed in the console by multiples command (liek *help* and *?* ; they do the same thing but code is only written once) you can make the name of the command to be and an array like so: ["help", "?"]
+ 1. If you want to make a function that can be executed in the console by multiple commands (like *help* and *?* ; they do the same thing but code is only written once) you can make the name of the command to be and an array like so: ["help", "?"]
   
   > ```javascript
   > var Default_command_help = new Object({
